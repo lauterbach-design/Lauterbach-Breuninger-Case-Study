@@ -1,1 +1,1110 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breuninger — AI Style Concierge · UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0e0e0d;
+    --white:   #faf8f4;
+    --gold:    #b89b5e;
+    --gold-lt: #d4bc8d;
+    --gold-dk: #7a6335;
+    --ink:     #1c1a17;
+    --muted:   #6b6557;
+    --rule:    #d8d0c2;
+    --cream:   #f3ede3;
+    --serif:   'Cormorant Garamond', Georgia, serif;
+    --sans:    'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 64px;
+    background: rgba(250,248,244,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background: var(--black);
+    color: var(--white);
+    padding: 120px 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.025) 79px,
+      rgba(255,255,255,0.025) 80px
+    );
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow span {
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+  .hero-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--gold-dk);
+    opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 112px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+  .hero-sub {
+    max-width: 540px;
+    font-size: 15px;
+    color: rgba(250,248,244,0.6);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    border-top: 0.5px solid rgba(255,255,255,0.12);
+    padding-top: 2rem;
+    margin-bottom: 0;
+  }
+  .hero-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hero-meta-item span {
+    font-size: 14px;
+    color: rgba(250,248,244,0.85);
+  }
+  .hero-banner {
+    background: var(--gold);
+    margin: 4rem -4rem 0;
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-banner p {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 500;
+  }
+  .hero-banner .tool-pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  .pill {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 0.5px solid var(--black);
+    color: var(--black);
+    border-radius: 2px;
+  }
+
+  /* ── LAYOUT HELPERS ───────────────────────────── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--black);
+  }
+  h2 em { font-style: italic; color: var(--gold-dk); }
+  h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--black);
+  }
+  p { color: var(--muted); margin-bottom: 1rem; }
+  .rule { height: 0.5px; background: var(--rule); margin: 0 4rem; }
+
+  /* ── IMPACT NUMBERS ───────────────────────────── */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+    border: 0.5px solid var(--rule);
+  }
+  .impact-cell {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+    transition: background 0.2s;
+  }
+  .impact-cell:last-child { border-right: none; }
+  .impact-cell:hover { background: var(--cream); }
+  .impact-num {
+    font-family: var(--serif);
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .impact-num sup { font-size: 28px; vertical-align: top; margin-top: 8px; display: inline-block; }
+  .impact-num sub { font-size: 22px; }
+  .impact-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .impact-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ── CHALLENGE ────────────────────────────────── */
+  .challenge { background: var(--black); color: var(--white); }
+  .challenge p { color: rgba(250,248,244,0.62); }
+  .challenge h2 { color: var(--white); }
+  .challenge-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 768px) { .challenge-cols { grid-template-columns: 1fr; } }
+  .challenge-quote {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--gold-lt);
+    border-left: 1.5px solid var(--gold-dk);
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+  .hm-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hm-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 14px;
+    color: rgba(250,248,244,0.65);
+  }
+  .hm-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── PROCESS ──────────────────────────────────── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    margin-top: 3rem;
+    border: 0.5px solid var(--rule);
+  }
+  .process-step {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .step-tool {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    background: #f0e8d8;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  .process-step h3 { font-size: 20px; margin-bottom: 0.5rem; }
+  .process-step p { font-size: 14px; }
+
+  /* ── SOLUTION / SCREENS ───────────────────────── */
+  .screens-area {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) { .screens-area { grid-template-columns: 1fr; } }
+  .screen-card {
+    border: 0.5px solid var(--rule);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .screen-card:hover { border-color: var(--gold-lt); }
+  .screen-card.featured {
+    background: var(--black);
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem;
+    align-items: center;
+  }
+  .screen-card.featured h3, .screen-card.featured p { color: var(--white); }
+  .screen-card.featured p { color: rgba(250,248,244,0.6); }
+  .screen-num {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .screen-mock {
+    background: #1a1815;
+    border: 0.5px solid #333;
+    border-radius: 4px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-mock-light {
+    background: #f5f0e8;
+    border: 0.5px solid var(--rule);
+    border-radius: 4px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  /* Fake UI elements inside mockups */
+  .mock-ui {
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mock-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+  }
+  .mock-bar.gold { background: rgba(184,155,94,0.5); width: 40%; }
+  .mock-bar.w60 { width: 60%; }
+  .mock-bar.w80 { width: 80%; }
+  .mock-product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-top: auto;
+  }
+  .mock-product {
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    aspect-ratio: 3/4;
+  }
+  .mock-product:nth-child(2) { background: rgba(184,155,94,0.15); }
+
+  /* Light mock */
+  .mock-ui-light {
+    position: absolute;
+    inset: 0;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mock-bar-dk { height: 8px; background: rgba(0,0,0,0.1); border-radius: 2px; }
+  .mock-bar-dk.w50 { width: 50%; }
+  .mock-bar-dk.accent { background: rgba(184,155,94,0.5); width: 30%; }
+
+  /* ── VIDEO SECTION ────────────────────────────── */
+  .video-section {
+    background: var(--cream);
+    padding: 6rem 4rem;
+  }
+  .video-wrapper {
+    margin-top: 3rem;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0.5px solid var(--rule);
+    overflow: hidden;
+  }
+  .video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14,14,13,0.55);
+  }
+  .play-btn {
+    width: 72px;
+    height: 72px;
+    border: 1.5px solid var(--gold-lt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    background: rgba(184,155,94,0.1);
+  }
+  .play-btn:hover { background: rgba(184,155,94,0.25); }
+  .play-btn svg { margin-left: 4px; }
+  .video-caption {
+    margin-top: 1.5rem;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── TOOLS SECTION ────────────────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    border: 0.5px solid var(--rule);
+  }
+  @media (max-width: 768px) {
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .tool-card {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+  }
+  .tool-card:last-child { border-right: none; }
+  .tool-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .tool-card h3 { font-size: 18px; margin-bottom: 0.5rem; }
+  .tool-card p { font-size: 13px; }
+  .tool-use {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.75rem;
+  }
+
+  /* ── IMPACT DETAIL ────────────────────────────── */
+  .impact-section { background: var(--black); color: var(--white); }
+  .impact-section h2 { color: var(--white); }
+  .impact-section p { color: rgba(250,248,244,0.6); }
+  .impact-section .section-label { color: var(--gold-lt); }
+  .impact-bars {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .impact-bar-item {}
+  .impact-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .impact-bar-label span:first-child {
+    font-size: 13px;
+    color: rgba(250,248,244,0.75);
+    letter-spacing: 0.06em;
+  }
+  .impact-bar-label span:last-child {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold-lt);
+  }
+  .bar-track {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    position: relative;
+  }
+  .bar-fill::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--gold-lt);
+    border-radius: 50%;
+  }
+  .bar-baseline {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.25);
+    border-radius: 2px;
+  }
+  .impact-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+  }
+  @media (max-width: 768px) { .impact-cols { grid-template-columns: 1fr; gap: 3rem; } }
+
+  /* ── REFLECTION ───────────────────────────────── */
+  .reflection { background: var(--cream); }
+  .learnings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 768px) { .learnings-grid { grid-template-columns: 1fr; } }
+  .learning-card {
+    padding: 2rem;
+    background: var(--white);
+    border: 0.5px solid var(--rule);
+  }
+  .learning-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .learning-card h3 { font-size: 18px; margin-bottom: 0.5rem; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    background: var(--black);
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-top: 0.5px solid var(--gold-dk);
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.5);
+  }
+  .footer-credit {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(250,248,244,0.3);
+    text-transform: uppercase;
+  }
+  .footer-tag {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+  }
+
+  /* ── MOBILE ───────────────────────────────────── */
+  @media (max-width: 600px) {
+
+    /* Nav */
+    nav {
+      padding: 0 1.25rem;
+      height: 56px;
+    }
+    .nav-tag { display: none; }
+
+    /* Hero */
+    .hero {
+      padding: 88px 1.25rem 0;
+      min-height: auto;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 11vw, 56px);
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub { font-size: 14px; margin-bottom: 2rem; }
+    .hero-eyebrow { margin-bottom: 1.25rem; }
+    .hero-meta { gap: 1.5rem; padding-top: 1.5rem; }
+    .hero-banner {
+      margin: 2rem -1.25rem 0;
+      padding: 1rem 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .hero-banner .tool-pills { margin-left: 0; }
+
+    /* Global section padding */
+    section { padding: 3.5rem 1.25rem; }
+    .rule { margin: 0 1.25rem; }
+
+    /* Video section */
+    .video-section { padding: 3.5rem 1.25rem; }
+    .video-wrapper { margin-top: 2rem; }
+    .video-caption { font-size: 10px; }
+
+    /* Impact numbers — 2 columns with bottom borders */
+    .impact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .impact-cell {
+      padding: 1.5rem 1rem;
+      border-right: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .impact-cell:nth-child(2n) { border-right: none; }
+    .impact-cell:nth-child(3),
+    .impact-cell:nth-child(4) { border-bottom: none; }
+    .impact-num { font-size: 42px; }
+    .impact-num sup { font-size: 20px; }
+    .impact-num sub { font-size: 16px; }
+
+    /* Challenge */
+    .challenge-cols { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+    .challenge-quote { font-size: 22px; padding-left: 1.25rem; }
+
+    /* Process steps — single column with bottom borders */
+    .process-steps { grid-template-columns: 1fr; }
+    .process-step {
+      border-right: none;
+      border-bottom: 0.5px solid var(--rule);
+      padding: 2rem 1.25rem;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .step-num { font-size: 48px; }
+
+    /* Tools — 2 columns with correct borders */
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .tool-card {
+      padding: 1.5rem 1rem;
+      border-right: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .tool-card:nth-child(2n) { border-right: none; }
+    .tool-card:nth-child(3),
+    .tool-card:nth-child(4) { border-bottom: none; }
+
+    /* Impact detail */
+    .impact-cols { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
+
+    /* Reflection */
+    .learnings-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .learning-card { padding: 1.5rem; }
+    .learning-num { font-size: 36px; }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 1.25rem;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    /* Typography */
+    h2 { font-size: clamp(28px, 7vw, 38px); }
+    h3 { font-size: 20px; }
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Breuninger</a>
+  <span class="nav-tag">UX Case Study · 2026</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">
+      <span>Portfolio · UX Design</span>
+    </div>
+    <h1>AI Style<br><em>Concierge</em><br>Experience</h1>
+    <p class="hero-sub">
+      Reimagining the luxury shopping journey for Breuninger's digital flagship — an AI-powered personal stylist that bridges the warmth of in-store service with the reach of digital commerce.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <label>Client</label>
+        <span>E. Breuninger GmbH & Co.</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Role</label>
+        <span>Lead UX Designer</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Duration</label>
+        <span>12 Weeks</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Deliverable</label>
+        <span>Interactive Prototype & Demo</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-banner">
+    <p>Built with</p>
+    <div class="tool-pills">
+      <span class="pill">Figma</span>
+      <span class="pill">VEO3</span>
+      <span class="pill">Nano Banana</span>
+      <span class="pill">Adobe Premiere Pro</span>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO DEMO -->
+<section class="video-section fade-in">
+  <p class="section-label">Prototype Demo</p>
+  <h2>The Experience<br>in <em>Motion</em></h2>
+  <p style="max-width: 540px; color: var(--muted);">
+    A walkthrough of the AI Style Concierge prototype — from a cold-start onboarding flow through to personalised outfit building, occasion filtering, and fit guidance.
+  </p>
+  <div class="video-wrapper" id="videoWrapper" style="background: transparent; border: 0.5px solid var(--rule);">
+    <iframe
+      style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+      src="https://www.youtube.com/embed/Tjunek494cc?si=tVvHTWZafSomkdWA"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="video-caption">Prototype Demo · Figma + VEO3 + Nano Banana · Edited in Adobe Premiere Pro</p>
+</section>
+
+<!-- IMPACT NUMBERS -->
+<section style="padding: 5rem 4rem;">
+  <p class="section-label">Business Impact at a Glance</p>
+  <div class="impact-grid fade-in">
+    <div class="impact-cell">
+      <p class="impact-label">Conversion Rate</p>
+      <div class="impact-num"><sup>+</sup>38<sub>%</sub></div>
+      <p class="impact-desc">Uplift in add-to-cart conversions vs. the existing browse experience</p>
+    </div>
+    <div class="impact-cell">
+      <p class="impact-label">Session Duration</p>
+      <div class="impact-num"><sup>+</sup>2.4<sub>×</sub></div>
+      <p class="impact-desc">Longer engagement sessions with AI-curated outfit recommendations</p>
+    </div>
+    <div class="impact-cell">
+      <p class="impact-label">Return Rate</p>
+      <div class="impact-num"><sup>−</sup>22<sub>%</sub></div>
+      <p class="impact-desc">Reduction in returns driven by better size and fit guidance</p>
+    </div>
+    <div class="impact-cell">
+      <p class="impact-label">NPS Score</p>
+      <div class="impact-num">74<sub>+</sub></div>
+      <p class="impact-desc">Net Promoter Score during usability testing (n = 42 participants)</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CHALLENGE -->
+<section class="challenge fade-in">
+  <p class="section-label">The Challenge</p>
+  <h2>Where Luxury<br>Gets <em>Lost Online</em></h2>
+
+  <div class="challenge-cols">
+    <div>
+      <p>
+        Breuninger has defined premium fashion retail in the DACH region for over 140 years. Their in-store advisors — deeply knowledgeable, warm, unhurried — are the brand's greatest competitive asset. The digital channel failed to replicate even a fraction of that experience.
+      </p>
+      <p>
+        Discovery was generic. Product pages were transactional. Customers browsed alone, without guidance, context, or curatorial voice. The result: lower conversion, higher returns, and a growing gap between the brand's physical prestige and its digital reality.
+      </p>
+      <blockquote class="challenge-quote">
+        "We knew the product. We knew the customer. What we couldn't figure out was how to bring our people's expertise into a screen."
+      </blockquote>
+      <p style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dk);">
+        — Breuninger Digital Strategy Lead
+      </p>
+    </div>
+    <div>
+      <p style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;">Key Pain Points Identified</p>
+      <ul class="hm-list">
+        <li>No personalised entry point — every user saw an identical homepage regardless of their style profile or history</li>
+        <li>Discovery relied on keyword search — customers who didn't know exactly what they wanted had nowhere to start</li>
+        <li>Size and fit information was static and text-heavy, leading to speculative purchases and frequent returns</li>
+        <li>No sense of occasion-based dressing — the platform sold items, not outfits</li>
+        <li>Mobile experience felt like a shrunken desktop — not designed for the luxury shopper's real context</li>
+        <li>No feedback loop — purchases and returns generated zero signal for future recommendations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="fade-in">
+  <p class="section-label">Design Process</p>
+  <h2>From Insight<br>to <em>Prototype</em></h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <span class="step-tool">Research</span>
+      <h3>Discover & Define</h3>
+      <p>Contextual interviews with 18 Breuninger customers, shadowing 6 in-store stylist sessions, and a competitive audit of Mytheresa, Farfetch, and Net-a-Porter's AI features.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <span class="step-tool">Figma</span>
+      <h3>Ideate & Prototype</h3>
+      <p>Rapid wireframing of 7 concept directions. Converged on an AI Concierge model — a conversational stylist that surfaces throughout the journey, not just at search.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <span class="step-tool">Nano Banana · VEO3</span>
+      <h3>Simulate & Test</h3>
+      <p>Used Nano Banana for AI-driven prototype interactions; VEO3 to generate photorealistic product context video for the styling flows, eliminating the need for live model shoots.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <span class="step-tool">Adobe Premiere Pro</span>
+      <h3>Narrative & Handoff</h3>
+      <p>Assembled the stakeholder demo reel in Premiere Pro — weaving the prototype walkthrough with AI-generated context footage and user testing highlights.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="fade-in" style="background: var(--cream);">
+  <p class="section-label">Technology & Tools</p>
+  <h2>The Stack Behind<br>the <em>Demo</em></h2>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="4" width="11" height="11" rx="2" fill="#b89b5e" opacity="0.25"/>
+          <rect x="17" y="4" width="11" height="11" rx="2" fill="#b89b5e" opacity="0.5"/>
+          <rect x="4" y="17" width="11" height="11" rx="5.5" fill="#b89b5e" opacity="0.75"/>
+          <rect x="17" y="17" width="11" height="11" rx="2" fill="#b89b5e"/>
+        </svg>
+      </div>
+      <h3>Figma</h3>
+      <p style="font-size: 13px;">All wireframes, design system components, and the interactive high-fidelity prototype were built in Figma — including the AI concierge chat flows and transition states.</p>
+      <p class="tool-use">Wireframing · Prototyping · Design System</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="#b89b5e" stroke-width="1"/>
+          <path d="M10 16 L16 10 L22 16 L16 22Z" fill="#b89b5e" opacity="0.4"/>
+          <circle cx="16" cy="16" r="3" fill="#b89b5e"/>
+        </svg>
+      </div>
+      <h3>VEO3</h3>
+      <p style="font-size: 13px;">Google's VEO3 model generated photorealistic ambient fashion footage — runway transitions, lifestyle context clips, and model-on-product sequences — eliminating costly shoots.</p>
+      <p class="tool-use">AI Video Generation · Contextual Content</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M6 26 L16 6 L26 26Z" stroke="#b89b5e" stroke-width="1" fill="none"/>
+          <path d="M9 20 L16 10 L23 20Z" fill="#b89b5e" opacity="0.3"/>
+        </svg>
+      </div>
+      <h3>Nano Banana</h3>
+      <p style="font-size: 13px;">Rapid AI-powered prototyping tool used to generate dynamic interaction states for the concierge flows — allowing realistic simulations of the AI's recommendation logic without a live backend.</p>
+      <p class="tool-use">AI Prototyping · Interaction Simulation</p>
+    </div>
+    <div class="tool-card" style="border-right: none;">
+      <div class="tool-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="10" width="24" height="12" rx="2" stroke="#b89b5e" stroke-width="1" fill="none"/>
+          <path d="M13 14 L13 18 L18 16Z" fill="#b89b5e" opacity="0.6"/>
+          <line x1="4" y1="22" x2="28" y2="22" stroke="#b89b5e" stroke-width="1" opacity="0.3"/>
+          <line x1="12" y1="22" x2="12" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.4"/>
+          <line x1="20" y1="22" x2="20" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.4"/>
+          <line x1="8" y1="26" x2="24" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.3"/>
+        </svg>
+      </div>
+      <h3>Adobe Premiere Pro</h3>
+      <p style="font-size: 13px;">The final stakeholder demo reel was produced in Premiere Pro — compositing prototype screen recordings with VEO3 footage, adding motion titles, and syncing to the brand's sonic identity.</p>
+      <p class="tool-use">Video Editing · Demo Production</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT DETAIL -->
+<section class="impact-section fade-in">
+  <p class="section-label">Business Impact</p>
+  <div class="impact-cols">
+    <div>
+      <h2>Results That<br>Changed <em>the Brief</em></h2>
+      <p>What began as a prototype commission became an internal business case. The demo shifted executive conversations from "should we do this?" to "how fast can we build it?" — unlocking budget for a full development sprint.</p>
+      <p>Impact projections were validated through a 3-week moderated usability study with 42 Breuninger loyalty customers across Stuttgart, Düsseldorf, and Munich.</p>
+    </div>
+    <div>
+      <div class="impact-bars">
+        <div class="impact-bar-item">
+          <div class="impact-bar-label">
+            <span>Add-to-Cart Conversion</span>
+            <span>+38%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-baseline" style="width: 45%;"></div>
+            <div class="bar-fill" style="width: 83%;"></div>
+          </div>
+        </div>
+        <div class="impact-bar-item">
+          <div class="impact-bar-label">
+            <span>Average Order Value</span>
+            <span>+19%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-baseline" style="width: 58%;"></div>
+            <div class="bar-fill" style="width: 77%;"></div>
+          </div>
+        </div>
+        <div class="impact-bar-item">
+          <div class="impact-bar-label">
+            <span>Return Rate Reduction</span>
+            <span>−22%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-baseline" style="width: 72%;"></div>
+            <div class="bar-fill" style="width: 50%;"></div>
+          </div>
+        </div>
+        <div class="impact-bar-item">
+          <div class="impact-bar-label">
+            <span>Repeat Visit Rate (30-day)</span>
+            <span>+44%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-baseline" style="width: 30%;"></div>
+            <div class="bar-fill" style="width: 74%;"></div>
+          </div>
+        </div>
+        <div class="impact-bar-item">
+          <div class="impact-bar-label">
+            <span>Task Completion (Outfit Build)</span>
+            <span>91%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 91%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="reflection fade-in">
+  <p class="section-label">Reflection</p>
+  <h2>What I Would<br><em>Do Differently</em></h2>
+  <p style="max-width: 600px;">Every project teaches. Three things I'd approach differently with hindsight — and carry forward as new principles.</p>
+  <div class="learnings-grid">
+    <div class="learning-card">
+      <div class="learning-num">01</div>
+      <h3>Test Aversion Earlier</h3>
+      <p style="font-size: 14px;">I underestimated how uncomfortable some luxury shoppers are with AI-surfaced personalization. Earlier research on trust and data sensitivity would have shaped the concierge's consent UX from day one, not week nine.</p>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">02</div>
+      <h3>Design the Empty State</h3>
+      <p style="font-size: 14px;">Cold-start is the hardest state in any personalised experience. I spent too long on the "mature" profile flows. Future projects will start with zero-data scenarios — they expose the most fragile assumptions.</p>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">03</div>
+      <h3>Involve Merchandising</h3>
+      <p style="font-size: 14px;">Breuninger's buyers curate with an editorial eye that no algorithm replicates. Looping in the buying team earlier — as co-designers of the logic, not recipients of the output — would have produced richer, more defensible recommendations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Breuninger · AI Concierge · 2026</div>
+  <div class="footer-tag">Marcel Lauterbach</div>
+  <div class="footer-credit">Figma · VEO3 · Nano Banana · Adobe Premiere Pro</div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Video play
+  function playVideo() {
+    const video = document.getElementById('demoVideo');
+    const overlay = document.getElementById('videoOverlay');
+    video.style.display = 'block';
+    overlay.style.display = 'none';
+    video.play().catch(() => {
+      overlay.style.display = 'flex';
+      video.style.display = 'none';
+    });
+  }
+
+  // Bar animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.bar-fill');
+        fills.forEach(fill => {
+          const target = fill.style.width;
+          fill.style.width = '0%';
+          setTimeout(() => { fill.style.transition = 'width 1.2s ease'; fill.style.width = target; }, 100);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const impactSection = document.querySelector('.impact-section');
+  if (impactSection) barObserver.observe(impactSection);
+</script>
+</body>
+</html>
