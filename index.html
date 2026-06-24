@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +35,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── NAV ─────────────────────────────────────── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -66,7 +64,6 @@
     color: var(--gold);
   }
 
-  /* ── HERO ─────────────────────────────────────── */
   .hero {
     min-height: 100vh;
     display: grid;
@@ -118,10 +115,7 @@
     max-width: 900px;
     margin-bottom: 2.5rem;
   }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold-lt);
-  }
+  .hero h1 em { font-style: italic; color: var(--gold-lt); }
   .hero-sub {
     max-width: 540px;
     font-size: 15px;
@@ -135,7 +129,6 @@
     flex-wrap: wrap;
     border-top: 0.5px solid rgba(255,255,255,0.12);
     padding-top: 2rem;
-    margin-bottom: 0;
   }
   .hero-meta-item label {
     display: block;
@@ -145,10 +138,7 @@
     color: var(--gold);
     margin-bottom: 4px;
   }
-  .hero-meta-item span {
-    font-size: 14px;
-    color: rgba(250,248,244,0.85);
-  }
+  .hero-meta-item span { font-size: 14px; color: rgba(250,248,244,0.85); }
   .hero-banner {
     background: var(--gold);
     margin: 4rem -4rem 0;
@@ -165,23 +155,7 @@
     color: var(--black);
     font-weight: 500;
   }
-  .hero-banner .tool-pills {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-left: auto;
-  }
-  .pill {
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border: 0.5px solid var(--black);
-    color: var(--black);
-    border-radius: 2px;
-  }
 
-  /* ── LAYOUT HELPERS ───────────────────────────── */
   section { padding: 6rem 4rem; }
   .section-label {
     font-size: 10px;
@@ -209,80 +183,53 @@
   p { color: var(--muted); margin-bottom: 1rem; }
   .rule { height: 0.5px; background: var(--rule); margin: 0 4rem; }
 
-  /* ── IMPACT NUMBERS ───────────────────────────── */
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0;
+  /* VIDEO */
+  .video-section { background: var(--cream); padding: 6rem 4rem; }
+  .video-wrapper {
+    margin-top: 3rem;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border: 0.5px solid var(--rule);
+    overflow: hidden;
   }
-  .impact-cell {
-    padding: 2.5rem 2rem;
-    border-right: 0.5px solid var(--rule);
-    transition: background 0.2s;
-  }
-  .impact-cell:last-child { border-right: none; }
-  .impact-cell:hover { background: var(--cream); }
-  .impact-num {
-    font-family: var(--serif);
-    font-size: 58px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--black);
-    margin-bottom: 6px;
-  }
-  .impact-num sup { font-size: 28px; vertical-align: top; margin-top: 8px; display: inline-block; }
-  .impact-num sub { font-size: 22px; }
-  .impact-label {
+  .video-caption {
+    margin-top: 1.5rem;
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .impact-desc {
-    font-size: 13px;
     color: var(--muted);
-    margin: 0;
-    line-height: 1.55;
   }
 
-  /* ── CHALLENGE ────────────────────────────────── */
+  /* PROBLEM */
   .challenge { background: var(--black); color: var(--white); }
   .challenge p { color: rgba(250,248,244,0.62); }
   .challenge h2 { color: var(--white); }
+  .challenge h3 { color: var(--white); }
   .challenge-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     margin-top: 3rem;
   }
-  @media (max-width: 768px) { .challenge-cols { grid-template-columns: 1fr; } }
-  .challenge-quote {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.45;
-    color: var(--gold-lt);
-    border-left: 1.5px solid var(--gold-dk);
-    padding-left: 2rem;
-    margin: 2rem 0;
-  }
-  .hm-list {
+  .pain-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
   }
-  .hm-list li {
+  .pain-list li {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
     font-size: 14px;
     color: rgba(250,248,244,0.65);
+    padding-bottom: 1.25rem;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
   }
-  .hm-list li::before {
+  .pain-list li:last-child { border-bottom: none; }
+  .pain-list li::before {
     content: '';
     width: 6px;
     height: 6px;
@@ -292,10 +239,32 @@
     margin-top: 7px;
   }
 
-  /* ── PROCESS ──────────────────────────────────── */
+  /* TARGET GROUP */
+  .user-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 3rem;
+    border: 0.5px solid var(--rule);
+  }
+  .user-card {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+  }
+  .user-card:last-child { border-right: none; }
+  .user-card-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* PROCESS */
   .process-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     margin-top: 3rem;
     border: 0.5px solid var(--rule);
@@ -303,7 +272,6 @@
   .process-step {
     padding: 2.5rem 2rem;
     border-right: 0.5px solid var(--rule);
-    position: relative;
   }
   .process-step:last-child { border-right: none; }
   .step-num {
@@ -314,7 +282,7 @@
     line-height: 1;
     margin-bottom: 1rem;
   }
-  .step-tool {
+  .step-tag {
     display: inline-block;
     font-size: 10px;
     letter-spacing: 0.14em;
@@ -328,257 +296,64 @@
   .process-step h3 { font-size: 20px; margin-bottom: 0.5rem; }
   .process-step p { font-size: 14px; }
 
-  /* ── SOLUTION / SCREENS ───────────────────────── */
-  .screens-area {
+  /* SOLUTION */
+  .solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
     margin-top: 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  @media (max-width: 768px) { .screens-area { grid-template-columns: 1fr; } }
-  .screen-card {
     border: 0.5px solid var(--rule);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s;
   }
-  .screen-card:hover { border-color: var(--gold-lt); }
-  .screen-card.featured {
-    background: var(--black);
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    padding: 3rem;
-    align-items: center;
+  .solution-card {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+    border-bottom: 0.5px solid var(--rule);
+    transition: background 0.2s;
   }
-  .screen-card.featured h3, .screen-card.featured p { color: var(--white); }
-  .screen-card.featured p { color: rgba(250,248,244,0.6); }
-  .screen-num {
+  .solution-card:hover { background: var(--cream); }
+  .solution-card:nth-child(even) { border-right: none; }
+  .solution-card:nth-child(3),
+  .solution-card:nth-child(4) { border-bottom: none; }
+  .solution-num {
     font-family: var(--serif);
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
+    display: block;
   }
-  .screen-mock {
-    background: #1a1815;
-    border: 0.5px solid #333;
-    border-radius: 4px;
-    height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .screen-mock-light {
-    background: #f5f0e8;
-    border: 0.5px solid var(--rule);
-    border-radius: 4px;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  /* Fake UI elements inside mockups */
-  .mock-ui {
-    position: absolute;
-    inset: 0;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .mock-bar {
-    height: 8px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-  }
-  .mock-bar.gold { background: rgba(184,155,94,0.5); width: 40%; }
-  .mock-bar.w60 { width: 60%; }
-  .mock-bar.w80 { width: 80%; }
-  .mock-product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    margin-top: auto;
-  }
-  .mock-product {
-    background: rgba(255,255,255,0.05);
-    border-radius: 2px;
-    aspect-ratio: 3/4;
-  }
-  .mock-product:nth-child(2) { background: rgba(184,155,94,0.15); }
+  .solution-card h3 { font-size: 20px; margin-bottom: 0.5rem; }
+  .solution-card p { font-size: 14px; }
 
-  /* Light mock */
-  .mock-ui-light {
-    position: absolute;
-    inset: 0;
-    padding: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .mock-bar-dk { height: 8px; background: rgba(0,0,0,0.1); border-radius: 2px; }
-  .mock-bar-dk.w50 { width: 50%; }
-  .mock-bar-dk.accent { background: rgba(184,155,94,0.5); width: 30%; }
-
-  /* ── VIDEO SECTION ────────────────────────────── */
-  .video-section {
-    background: var(--cream);
-    padding: 6rem 4rem;
-  }
-  .video-wrapper {
-    margin-top: 3rem;
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0.5px solid var(--rule);
-    overflow: hidden;
-  }
-  .video-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .video-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(14,14,13,0.55);
-  }
-  .play-btn {
-    width: 72px;
-    height: 72px;
-    border: 1.5px solid var(--gold-lt);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-    background: rgba(184,155,94,0.1);
-  }
-  .play-btn:hover { background: rgba(184,155,94,0.25); }
-  .play-btn svg { margin-left: 4px; }
-  .video-caption {
-    margin-top: 1.5rem;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  /* ── TOOLS SECTION ────────────────────────────── */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 3rem;
-    border: 0.5px solid var(--rule);
-  }
-  @media (max-width: 768px) {
-    .tools-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .tool-card {
-    padding: 2.5rem 2rem;
-    border-right: 0.5px solid var(--rule);
-  }
-  .tool-card:last-child { border-right: none; }
-  .tool-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-  }
-  .tool-card h3 { font-size: 18px; margin-bottom: 0.5rem; }
-  .tool-card p { font-size: 13px; }
-  .tool-use {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 0.75rem;
-  }
-
-  /* ── IMPACT DETAIL ────────────────────────────── */
+  /* IMPACT */
   .impact-section { background: var(--black); color: var(--white); }
   .impact-section h2 { color: var(--white); }
   .impact-section p { color: rgba(250,248,244,0.6); }
   .impact-section .section-label { color: var(--gold-lt); }
-  .impact-bars {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .impact-bar-item {}
-  .impact-bar-label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .impact-bar-label span:first-child {
-    font-size: 13px;
-    color: rgba(250,248,244,0.75);
-    letter-spacing: 0.06em;
-  }
-  .impact-bar-label span:last-child {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--gold-lt);
-  }
-  .bar-track {
-    height: 4px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-    position: relative;
-  }
-  .bar-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 2px;
-    position: relative;
-  }
-  .bar-fill::after {
-    content: '';
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    background: var(--gold-lt);
-    border-radius: 50%;
-  }
-  .bar-baseline {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: rgba(255,255,255,0.25);
-    border-radius: 2px;
-  }
+  .impact-section h3 { color: var(--white); }
   .impact-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
-  @media (max-width: 768px) { .impact-cols { grid-template-columns: 1fr; gap: 3rem; } }
+  .impact-card {
+    padding: 2rem;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    margin-bottom: 1px;
+  }
+  .impact-card-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .impact-card h3 { font-size: 20px; margin-bottom: 0.5rem; }
 
-  /* ── REFLECTION ───────────────────────────────── */
+  /* LEARNINGS */
   .reflection { background: var(--cream); }
   .learnings-grid {
     display: grid;
@@ -586,7 +361,6 @@
     gap: 2rem;
     margin-top: 3rem;
   }
-  @media (max-width: 768px) { .learnings-grid { grid-template-columns: 1fr; } }
   .learning-card {
     padding: 2rem;
     background: var(--white);
@@ -602,7 +376,18 @@
   }
   .learning-card h3 { font-size: 18px; margin-bottom: 0.5rem; }
 
-  /* ── FOOTER ───────────────────────────────────── */
+  /* REFLECTION */
+  .reflection-text {
+    max-width: 680px;
+    margin-top: 1.5rem;
+  }
+  .reflection-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
   footer {
     background: var(--black);
     padding: 4rem;
@@ -615,16 +400,9 @@
   }
   .footer-brand {
     font-family: var(--serif);
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(250,248,244,0.5);
-  }
-  .footer-credit {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(250,248,244,0.3);
-    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250,248,244,0.85);
   }
   .footer-tag {
     font-size: 11px;
@@ -632,118 +410,33 @@
     text-transform: uppercase;
     color: var(--gold-dk);
   }
-
-  /* ── MOBILE ───────────────────────────────────── */
-  @media (max-width: 600px) {
-
-    /* Nav */
-    nav {
-      padding: 0 1.25rem;
-      height: 56px;
-    }
-    .nav-tag { display: none; }
-
-    /* Hero */
-    .hero {
-      padding: 88px 1.25rem 0;
-      min-height: auto;
-    }
-    .hero h1 {
-      font-size: clamp(40px, 11vw, 56px);
-      margin-bottom: 1.5rem;
-    }
-    .hero-sub { font-size: 14px; margin-bottom: 2rem; }
-    .hero-eyebrow { margin-bottom: 1.25rem; }
-    .hero-meta { gap: 1.5rem; padding-top: 1.5rem; }
-    .hero-banner {
-      margin: 2rem -1.25rem 0;
-      padding: 1rem 1.25rem;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-    .hero-banner .tool-pills { margin-left: 0; }
-
-    /* Global section padding */
-    section { padding: 3.5rem 1.25rem; }
-    .rule { margin: 0 1.25rem; }
-
-    /* Video section */
-    .video-section { padding: 3.5rem 1.25rem; }
-    .video-wrapper { margin-top: 2rem; }
-    .video-caption { font-size: 10px; }
-
-    /* Impact numbers — 2 columns with bottom borders */
-    .impact-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .impact-cell {
-      padding: 1.5rem 1rem;
-      border-right: 0.5px solid var(--rule);
-      border-bottom: 0.5px solid var(--rule);
-    }
-    .impact-cell:nth-child(2n) { border-right: none; }
-    .impact-cell:nth-child(3),
-    .impact-cell:nth-child(4) { border-bottom: none; }
-    .impact-num { font-size: 42px; }
-    .impact-num sup { font-size: 20px; }
-    .impact-num sub { font-size: 16px; }
-
-    /* Challenge */
-    .challenge-cols { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
-    .challenge-quote { font-size: 22px; padding-left: 1.25rem; }
-
-    /* Process steps — single column with bottom borders */
-    .process-steps { grid-template-columns: 1fr; }
-    .process-step {
-      border-right: none;
-      border-bottom: 0.5px solid var(--rule);
-      padding: 2rem 1.25rem;
-    }
-    .process-step:last-child { border-bottom: none; }
-    .step-num { font-size: 48px; }
-
-    /* Tools — 2 columns with correct borders */
-    .tools-grid { grid-template-columns: 1fr 1fr; }
-    .tool-card {
-      padding: 1.5rem 1rem;
-      border-right: 0.5px solid var(--rule);
-      border-bottom: 0.5px solid var(--rule);
-    }
-    .tool-card:nth-child(2n) { border-right: none; }
-    .tool-card:nth-child(3),
-    .tool-card:nth-child(4) { border-bottom: none; }
-
-    /* Impact detail */
-    .impact-cols { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
-
-    /* Reflection */
-    .learnings-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .learning-card { padding: 1.5rem; }
-    .learning-num { font-size: 36px; }
-
-    /* Footer */
-    footer {
-      padding: 2.5rem 1.25rem;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    /* Typography */
-    h2 { font-size: clamp(28px, 7vw, 38px); }
-    h3 { font-size: 20px; }
+  .footer-credit {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(250,248,244,0.3);
+    text-transform: uppercase;
   }
 
-  /* ── ANIMATIONS ───────────────────────────────── */
   .fade-in {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-tag { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 88px 1.25rem 0; }
+    .hero-banner { margin: 2rem -1.25rem 0; padding: 1rem 1.25rem; }
+    .challenge-cols, .impact-cols { grid-template-columns: 1fr; gap: 2rem; }
+    .user-cards, .solution-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .learnings-grid { grid-template-columns: 1fr; }
+    .rule { margin: 0 1.25rem; }
+    footer { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    .video-section { padding: 3.5rem 1.25rem; }
   }
 </style>
 </head>
@@ -759,314 +452,260 @@
 <section class="hero">
   <div>
     <div class="hero-eyebrow">
-      <span>Portfolio · UX Design</span>
+      <span>Portfolio · Marcel Lauterbach</span>
     </div>
-    <h1>AI Style<br><em>Concierge</em><br>Experience</h1>
+    <h1>AI Style<br><em>Concierge</em></h1>
     <p class="hero-sub">
-      Reimagining the luxury shopping journey for Breuninger's digital flagship — an AI-powered personal stylist that bridges the warmth of in-store service with the reach of digital commerce.
+      I designed a personal stylist that lives in your phone — for customers who expect guidance, not just a search bar.
     </p>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <label>Client</label>
-        <span>E. Breuninger GmbH & Co.</span>
+        <label>Designer</label>
+        <span>Marcel Lauterbach</span>
       </div>
       <div class="hero-meta-item">
         <label>Role</label>
-        <span>UX Designer</span>
+        <span>UX/UI Designer</span>
       </div>
       <div class="hero-meta-item">
-        <label>Duration</label>
-        <span>12 Weeks</span>
+        <label>Domain</label>
+        <span>Luxury Retail · Conversational AI</span>
       </div>
       <div class="hero-meta-item">
         <label>Deliverable</label>
-        <span>Interactive Prototype & Demo</span>
+        <span>Proof of Concept</span>
       </div>
     </div>
   </div>
   <div class="hero-banner">
-    <p>Built with</p>
-    <div class="tool-pills">
-      <span class="pill">Figma</span>
-      <span class="pill">VEO3</span>
-      <span class="pill">Nano Banana</span>
-      <span class="pill">Adobe Premiere Pro</span>
-    </div>
+    <p>UX Case Study · 2026</p>
   </div>
 </section>
 
-<!-- VIDEO DEMO -->
+<!-- VIDEO -->
 <section class="video-section fade-in">
-  <p class="section-label">Prototype Demo</p>
-  <h2>The Experience<br>in <em>Motion</em></h2>
-  <p style="max-width: 540px; color: var(--muted);">
-    A walkthrough of the AI Style Concierge prototype — from a cold-start onboarding flow through to personalised outfit building, occasion filtering, and fit guidance.
-  </p>
-  <div class="video-wrapper" id="videoWrapper" style="background: transparent; border: 0.5px solid var(--rule);">
+  <p class="section-label">Project Walkthrough</p>
+  <h2>See it in <em>Motion</em></h2>
+  <p style="max-width: 540px;">A walkthrough of the AI Style Concierge — from trend discovery through wardrobe analysis, virtual try-on, and voice-activated checkout.</p>
+  <div class="video-wrapper">
     <iframe
       style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
       src="https://www.youtube.com/embed/Tjunek494cc?si=tVvHTWZafSomkdWA"
-      title="YouTube video player"
+      title="Breuninger AI Style Concierge Demo"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
   </div>
-  <p class="video-caption">Prototype Demo · Figma + VEO3 + Nano Banana · Edited in Adobe Premiere Pro</p>
+  <p class="video-caption">Proof of Concept · 2026</p>
 </section>
 
-<!-- IMPACT NUMBERS -->
-<section style="padding: 5rem 4rem;">
-  <p class="section-label">Business Impact at a Glance</p>
-  <div class="impact-grid fade-in">
-    <div class="impact-cell">
-      <p class="impact-label">Conversion Rate</p>
-      <div class="impact-num"><sup>+</sup>38<sub>%</sub></div>
-      <p class="impact-desc">Uplift in add-to-cart conversions vs. the existing browse experience</p>
+<!-- OVERVIEW -->
+<section class="fade-in">
+  <p class="section-label">01 — Overview</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+    <div>
+      <h2>An AI-powered personal stylist for <em>premium retail</em></h2>
     </div>
-    <div class="impact-cell">
-      <p class="impact-label">Session Duration</p>
-      <div class="impact-num"><sup>+</sup>2.4<sub>×</sub></div>
-      <p class="impact-desc">Longer engagement sessions with AI-curated outfit recommendations</p>
-    </div>
-    <div class="impact-cell">
-      <p class="impact-label">Return Rate</p>
-      <div class="impact-num"><sup>−</sup>22<sub>%</sub></div>
-      <p class="impact-desc">Reduction in returns driven by better size and fit guidance</p>
-    </div>
-    <div class="impact-cell">
-      <p class="impact-label">NPS Score</p>
-      <div class="impact-num">74<sub>+</sub></div>
-      <p class="impact-desc">Net Promoter Score during usability testing (n = 42 participants)</p>
+    <div>
+      <p style="font-size: 17px; line-height: 1.8;">This is a proof of concept for an AI-powered virtual fashion assistant built for Breuninger, one of Germany's leading premium fashion retailers. The goal was to reimagine online shopping for high-expectation customers — replacing passive browsing with an active, conversational experience guided by a lifelike AI stylist.</p>
+      <p style="font-size: 17px; line-height: 1.8;">The platform combines trend discovery, wardrobe analysis, virtual try-on, and voice-activated checkout into a single, fluid interaction. Instead of scrolling through filters, customers talk to Beau — a personal AI stylist who remembers their preferences, understands their style, and shows them exactly how a new piece will look before they buy it.</p>
     </div>
   </div>
 </section>
 
 <div class="rule"></div>
 
-<!-- CHALLENGE -->
+<!-- PROBLEM -->
 <section class="challenge fade-in">
-  <p class="section-label">The Challenge</p>
-  <h2>Where Luxury<br>Gets <em>Lost Online</em></h2>
-
+  <p class="section-label" style="color: var(--gold-lt);">02 — Problem Framing</p>
+  <h2>Where luxury <em>gets lost online</em></h2>
   <div class="challenge-cols">
     <div>
-      <p>
-        Breuninger has defined premium fashion retail in the DACH region for over 140 years. Their in-store advisors — deeply knowledgeable, warm, unhurried — are the brand's greatest competitive asset. The digital channel failed to replicate even a fraction of that experience.
-      </p>
-      <p>
-        Discovery was generic. Product pages were transactional. Customers browsed alone, without guidance, context, or curatorial voice. The result: lower conversion, higher returns, and a growing gap between the brand's physical prestige and its digital reality.
-      </p>
-      <blockquote class="challenge-quote">
-        "We knew the product. We knew the customer. What we couldn't figure out was how to bring our people's expertise into a screen."
-      </blockquote>
-      <p style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dk);">
-        — Breuninger Digital Strategy Lead
-      </p>
+      <p>Breuninger is a premium fashion retailer. But online, it was selling like any other e-commerce store.</p>
+      <p>The core problem was a missing human layer. In a physical luxury store, a sales associate reads you, guides you, and builds confidence in the purchase. They remember you came in last month. They know the blazer runs small. They pull three things from different floors and make them work together. Online, none of that existed.</p>
+      <p>For high-expectation customers, this gap is expensive. Not just in lost sales — but in lost trust. When you're spending €300 on a vest, uncertainty about fit, styling, and whether it works with what you already own is enough to make you close the tab.</p>
+      <p>The search bar couldn't express intent. "Something for a winter gallery opening" doesn't translate into filters. Size charts don't replace fitting rooms. Algorithmic "complete the look" sections feel impersonal. And every visit started from zero — no memory, no context, no relationship.</p>
+      <p style="color: var(--gold-lt); font-family: var(--serif); font-size: 20px; font-style: italic; line-height: 1.5; margin-top: 1.5rem;">The opportunity wasn't to improve the browsing experience. It was to replace it entirely.</p>
     </div>
     <div>
-      <p style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;">Key Pain Points Identified</p>
-      <ul class="hm-list">
-        <li>No personalised entry point — every user saw an identical homepage regardless of their style profile or history</li>
-        <li>Discovery relied on keyword search — customers who didn't know exactly what they wanted had nowhere to start</li>
-        <li>Size and fit information was static and text-heavy, leading to speculative purchases and frequent returns</li>
-        <li>No sense of occasion-based dressing — the platform sold items, not outfits</li>
-        <li>Mobile experience felt like a shrunken desktop — not designed for the luxury shopper's real context</li>
-        <li>No feedback loop — purchases and returns generated zero signal for future recommendations</li>
+      <p style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;">Pain Points</p>
+      <ul class="pain-list">
+        <li>No personalised entry point — every user saw an identical homepage regardless of style or history</li>
+        <li>No "this is right for you" moment — luxury shoppers need reassurance, not just information</li>
+        <li>Size and fit guidance was generic — a size chart doesn't replace a knowledgeable assistant who knows the brand's cut</li>
+        <li>No outfit-building support — the platform sold items, not looks</li>
+        <li>Search didn't reflect intent — customers couldn't express occasion, mood, or body type</li>
+        <li>No memory — every visit started from zero, no relationship, no context</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- TARGET GROUP -->
 <section class="fade-in">
-  <p class="section-label">Design Process</p>
-  <h2>From Insight<br>to <em>Prototype</em></h2>
+  <p class="section-label">03 — Target Group & Needs</p>
+  <h2>Two users, one <em>shared frustration</em></h2>
+  <p style="max-width: 600px;">Based on how the platform is structured, two distinct user types emerge — each with different priorities, but the same core need: less time spent on tools, more time spent on decisions.</p>
+  <div class="user-cards">
+    <div class="user-card">
+      <span class="user-card-label">User Type 01</span>
+      <h3>The Established Consumer</h3>
+      <p>Late 40s to early 60s, professional, likely a long-time Breuninger customer who started in-store. They know what they want and don't need to be sold on quality. But they do need confidence before clicking buy. They shop online for convenience, not discovery — and when that confidence isn't there, expensive items stall in the basket.</p>
+    </div>
+    <div class="user-card">
+      <span class="user-card-label">User Type 02</span>
+      <h3>The Premium Millennial</h3>
+      <p>Mid-30s, fashion-aware, and comfortable spending €300–600 on a single piece. They expect the digital experience to feel as considered as the product itself. They'll leave if the site feels cold or generic.</p>
+      <p style="margin-top: 1rem;">What both share is a mindset, not a demographic. They're not bargain hunters. They're buying into a decision — this piece is worth it, it fits my life, it will last. That decision requires confidence. And confidence online comes from context: how does this fit, what does it go with, is this right for me.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PROCESS -->
+<section class="fade-in" style="background: var(--cream);">
+  <p class="section-label">04 — Design Process & Challenges</p>
+  <h2>From brief <em>to prototype</em></h2>
   <div class="process-steps">
     <div class="process-step">
       <div class="step-num">01</div>
-      <span class="step-tool">Research</span>
-      <h3>Discover & Define</h3>
-      <p>Contextual interviews with 18 Breuninger customers, shadowing 6 in-store stylist sessions, and a competitive audit of Mytheresa, Farfetch, and Net-a-Porter's AI features.</p>
+      <span class="step-tag">Discovery</span>
+      <h3>User Needs</h3>
+      <p>I started by mapping what the design team actually needed day to day and where the current experience fell short — understanding the real workflow, not just the stated problems.</p>
     </div>
     <div class="process-step">
       <div class="step-num">02</div>
-      <span class="step-tool">Figma</span>
-      <h3>Ideate & Prototype</h3>
-      <p>Rapid wireframing of 7 concept directions. Converged on an AI Concierge model — a conversational stylist that surfaces throughout the journey, not just at search.</p>
+      <span class="step-tag">Research</span>
+      <h3>Competitive Analysis</h3>
+      <p>I audited the existing AI image generation landscape — DALL-E 3, Midjourney, and Adobe Express. The pattern was consistent: built for individual creators, not teams working within brand constraints.</p>
     </div>
     <div class="process-step">
       <div class="step-num">03</div>
-      <span class="step-tool">Nano Banana · VEO3</span>
-      <h3>Simulate & Test</h3>
-      <p>Used Nano Banana for AI-driven prototype interactions; VEO3 to generate photorealistic product context video for the styling flows, eliminating the need for live model shoots.</p>
+      <span class="step-tag">Sketching</span>
+      <h3>The Hardest Decision</h3>
+      <p>Two core design challenges emerged: making Beau feel warm and human rather than gimmicky, and designing trust into the virtual try-on for a privacy-conscious audience.</p>
     </div>
     <div class="process-step">
       <div class="step-num">04</div>
-      <span class="step-tool">Adobe Premiere Pro</span>
-      <h3>Narrative & Handoff</h3>
-      <p>Assembled the stakeholder demo reel in Premiere Pro — weaving the prototype walkthrough with AI-generated context footage and user testing highlights.</p>
+      <span class="step-tag">Design</span>
+      <h3>Progressive Disclosure</h3>
+      <p>I resolved the complexity tension through progressive disclosure — each flow starts focused, with advanced controls appearing only in context. The interface scales with user intent.</p>
     </div>
   </div>
 </section>
 
-<!-- TOOLS -->
-<section class="fade-in" style="background: var(--cream);">
-  <p class="section-label">Technology & Tools</p>
-  <h2>The Stack Behind<br>the <em>Demo</em></h2>
-  <div class="tools-grid">
-    <div class="tool-card">
-      <div class="tool-icon">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect x="4" y="4" width="11" height="11" rx="2" fill="#b89b5e" opacity="0.25"/>
-          <rect x="17" y="4" width="11" height="11" rx="2" fill="#b89b5e" opacity="0.5"/>
-          <rect x="4" y="17" width="11" height="11" rx="5.5" fill="#b89b5e" opacity="0.75"/>
-          <rect x="17" y="17" width="11" height="11" rx="2" fill="#b89b5e"/>
-        </svg>
-      </div>
-      <h3>Figma</h3>
-      <p style="font-size: 13px;">All wireframes, design system components, and the interactive high-fidelity prototype were built in Figma — including the AI concierge chat flows and transition states.</p>
-      <p class="tool-use">Wireframing · Prototyping · Design System</p>
+<!-- SOLUTION -->
+<section class="fade-in">
+  <p class="section-label">05 — The Solution & Key Features</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3rem;">
+    <div>
+      <h2>Four capabilities, <em>one conversation</em></h2>
     </div>
-    <div class="tool-card">
-      <div class="tool-icon">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="12" stroke="#b89b5e" stroke-width="1"/>
-          <path d="M10 16 L16 10 L22 16 L16 22Z" fill="#b89b5e" opacity="0.4"/>
-          <circle cx="16" cy="16" r="3" fill="#b89b5e"/>
-        </svg>
-      </div>
-      <h3>VEO3</h3>
-      <p style="font-size: 13px;">Google's VEO3 model generated photorealistic ambient fashion footage — runway transitions, lifestyle context clips, and model-on-product sequences — eliminating costly shoots.</p>
-      <p class="tool-use">AI Video Generation · Contextual Content</p>
+    <div>
+      <p style="font-size: 16px; line-height: 1.8;">The central design decision was to build the experience as a video call, not a chat interface or a standard app flow. Fashion is visual and emotional — a video call mirrors the in-store experience. You see a person, they see you, there's a back-and-forth that feels like a relationship rather than a search query. For high-spending customers, a face on screen signals credibility in a way that text never can. Beau needed to feel like someone, not something. And practically, the camera was already open — scanning your clothes and generating a 3D preview felt like a natural extension of the conversation, not a feature bolted on.</p>
     </div>
-    <div class="tool-card">
-      <div class="tool-icon">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <path d="M6 26 L16 6 L26 26Z" stroke="#b89b5e" stroke-width="1" fill="none"/>
-          <path d="M9 20 L16 10 L23 20Z" fill="#b89b5e" opacity="0.3"/>
-        </svg>
-      </div>
-      <h3>Nano Banana</h3>
-      <p style="font-size: 13px;">Rapid AI-powered prototyping tool used to generate dynamic interaction states for the concierge flows — allowing realistic simulations of the AI's recommendation logic without a live backend.</p>
-      <p class="tool-use">AI Prototyping · Interaction Simulation</p>
+  </div>
+  <div class="solution-grid">
+    <div class="solution-card">
+      <span class="solution-num">01 / 04</span>
+      <h3>Beau, the AI Stylist</h3>
+      <p>A lifelike virtual fashion advisor who opens every session with context — remembering past purchases, previous conversations, personal preferences. She interprets casual language ("hippie style," "something for a meeting") and responds with curated, visual recommendations in real time.</p>
     </div>
-    <div class="tool-card" style="border-right: none;">
-      <div class="tool-icon">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect x="4" y="10" width="24" height="12" rx="2" stroke="#b89b5e" stroke-width="1" fill="none"/>
-          <path d="M13 14 L13 18 L18 16Z" fill="#b89b5e" opacity="0.6"/>
-          <line x1="4" y1="22" x2="28" y2="22" stroke="#b89b5e" stroke-width="1" opacity="0.3"/>
-          <line x1="12" y1="22" x2="12" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.4"/>
-          <line x1="20" y1="22" x2="20" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.4"/>
-          <line x1="8" y1="26" x2="24" y2="26" stroke="#b89b5e" stroke-width="1" opacity="0.3"/>
-        </svg>
-      </div>
-      <h3>Adobe Premiere Pro</h3>
-      <p style="font-size: 13px;">The final stakeholder demo reel was produced in Premiere Pro — compositing prototype screen recordings with VEO3 footage, adding motion titles, and syncing to the brand's sonic identity.</p>
-      <p class="tool-use">Video Editing · Demo Production</p>
+    <div class="solution-card">
+      <span class="solution-num">02 / 04</span>
+      <h3>Wardrobe Integration</h3>
+      <p>Customers photograph their existing clothes directly in the app. The AI analyses silhouette, colour, and fit to recommend new pieces that work with what they already own — turning the session into a styling conversation rather than a sales pitch.</p>
+    </div>
+    <div class="solution-card">
+      <span class="solution-num">03 / 04</span>
+      <h3>Virtual Try-On</h3>
+      <p>The app generates a 360-degree 3D preview of the customer wearing a combination of their existing wardrobe and new Breuninger pieces. Before any money changes hands, the customer can see exactly how the outfit comes together from every angle.</p>
+    </div>
+    <div class="solution-card">
+      <span class="solution-num">04 / 04</span>
+      <h3>Frictionless Checkout</h3>
+      <p>Once the customer is ready, a single voice command completes the purchase — pulling stored size, delivery address, and payment details. The transaction happens inside the conversation, without breaking the flow.</p>
     </div>
   </div>
 </section>
 
-<!-- IMPACT DETAIL -->
+<!-- IMPACT -->
 <section class="impact-section fade-in">
-  <p class="section-label">Business Impact</p>
+  <p class="section-label">06 — Strategic Value</p>
+  <h2>What this <em>changes</em></h2>
+  <p style="max-width: 600px; margin-bottom: 3rem;">In premium retail, a better customer experience and better business metrics are the same investment. This product makes that case concretely.</p>
   <div class="impact-cols">
     <div>
-      <h2>Results That<br>Changed <em>the Brief</em></h2>
-      <p>What began as a prototype commission became an internal business case. The demo shifted executive conversations from "should we do this?" to "how fast can we build it?" — unlocking budget for a full development sprint.</p>
-      <p>Impact projections were validated through a 3-week moderated usability study with 42 Breuninger loyalty customers across Stuttgart, Düsseldorf, and Munich.</p>
+      <div class="impact-card" style="margin-bottom: 1px;">
+        <span class="impact-card-label">For the Customer</span>
+        <h3>Confidence to buy</h3>
+        <p>The platform removes the biggest barrier to buying online at this price point — uncertainty. Uncertainty about fit, about styling, about whether a €300 piece is actually right for them. Beau doesn't just show products. She builds confidence. And a confident customer buys.</p>
+      </div>
+      <div class="impact-card">
+        <span class="impact-card-label">For the Brand</span>
+        <h3>Positioning reinforced at every touchpoint</h3>
+        <p>Breuninger's positioning is built on quality, curation, and prestige. A cold, generic browsing experience quietly erodes it. An experience that feels personal, warm, and expertly guided reinforces exactly what the brand promises.</p>
+      </div>
     </div>
     <div>
-      <div class="impact-bars">
-        <div class="impact-bar-item">
-          <div class="impact-bar-label">
-            <span>Add-to-Cart Conversion</span>
-            <span>+38%</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-baseline" style="width: 45%;"></div>
-            <div class="bar-fill" style="width: 83%;"></div>
-          </div>
-        </div>
-        <div class="impact-bar-item">
-          <div class="impact-bar-label">
-            <span>Average Order Value</span>
-            <span>+19%</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-baseline" style="width: 58%;"></div>
-            <div class="bar-fill" style="width: 77%;"></div>
-          </div>
-        </div>
-        <div class="impact-bar-item">
-          <div class="impact-bar-label">
-            <span>Return Rate Reduction</span>
-            <span>−22%</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-baseline" style="width: 72%;"></div>
-            <div class="bar-fill" style="width: 50%;"></div>
-          </div>
-        </div>
-        <div class="impact-bar-item">
-          <div class="impact-bar-label">
-            <span>Repeat Visit Rate (30-day)</span>
-            <span>+44%</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-baseline" style="width: 30%;"></div>
-            <div class="bar-fill" style="width: 74%;"></div>
-          </div>
-        </div>
-        <div class="impact-bar-item">
-          <div class="impact-bar-label">
-            <span>Task Completion (Outfit Build)</span>
-            <span>91%</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width: 91%;"></div>
-          </div>
-        </div>
+      <div class="impact-card" style="margin-bottom: 1px;">
+        <span class="impact-card-label">For the Business</span>
+        <h3>Fewer abandoned baskets. Fewer returns.</h3>
+        <p>Confidence translates directly into business outcomes. Fewer abandoned baskets from customers who couldn't commit. Higher average order value from customers who buy the vest and both shirts because they've seen how it all works together. Fewer returns from customers who purchased with clarity rather than hope.</p>
+      </div>
+      <div class="impact-card">
+        <span class="impact-card-label">The Bigger Picture</span>
+        <h3>The in-store relationship, at scale</h3>
+        <p>The product doesn't just improve the online channel. It brings the in-store relationship into the customer's home — and makes it available at scale, without requiring a human advisor for every interaction.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REFLECTION -->
+<!-- LEARNINGS -->
 <section class="reflection fade-in">
-  <p class="section-label">Reflection</p>
-  <h2>What I Would<br><em>Do Differently</em></h2>
-  <p style="max-width: 600px;">Every project teaches. Three things I'd approach differently with hindsight — and carry forward as new principles.</p>
+  <p class="section-label">07 — Key Learnings</p>
+  <h2>What this <em>taught me</em></h2>
   <div class="learnings-grid">
     <div class="learning-card">
       <div class="learning-num">01</div>
-      <h3>Test Aversion Earlier</h3>
-      <p style="font-size: 14px;">I underestimated how uncomfortable some luxury shoppers are with AI-surfaced personalization. Earlier research on trust and data sensitivity would have shaped the concierge's consent UX from day one, not week nine.</p>
+      <h3>Personality is a design material</h3>
+      <p style="font-size: 14px;">Beau's warmth, memory, and tone weren't soft details — they were the product. Getting that wrong would have made the whole experience feel like a gimmick rather than a genuine upgrade to how premium retail works online.</p>
     </div>
     <div class="learning-card">
       <div class="learning-num">02</div>
-      <h3>Design the Empty State</h3>
-      <p style="font-size: 14px;">Cold-start is the hardest state in any personalised experience. I spent too long on the "mature" profile flows. Future projects will start with zero-data scenarios — they expose the most fragile assumptions.</p>
+      <h3>Trust is designed, not assumed</h3>
+      <p style="font-size: 14px;">The virtual try-on only works if customers feel safe enough to use it. Privacy concerns don't disappear because a feature is useful — they have to be addressed in the design itself, through clear framing, simple instructions, and an immediate, visible payoff.</p>
     </div>
     <div class="learning-card">
       <div class="learning-num">03</div>
-      <h3>Involve Merchandising</h3>
-      <p style="font-size: 14px;">Breuninger's buyers curate with an editorial eye that no algorithm replicates. Looping in the buying team earlier — as co-designers of the logic, not recipients of the output — would have produced richer, more defensible recommendations.</p>
+      <h3>The best commerce doesn't feel like commerce</h3>
+      <p style="font-size: 14px;">The checkout happened inside a conversation. The transaction was almost invisible. That's not an accident — it's a deliberate design decision that keeps the customer in the experience rather than pulling them out of it.</p>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div style="margin-top: 5rem;">
+    <p class="section-label">08 — Reflection</p>
+    <h2>What I'd bring <em>to your team</em></h2>
+    <div class="reflection-text">
+      <p>The hardest thing about this project wasn't the technology. It was the feeling. Making an AI interaction feel like a relationship rather than a feature. Designing a try-on flow that a privacy-conscious customer would actually trust. Building a checkout so frictionless it disappears into the conversation.</p>
+      <p>That's the kind of design problem I find most interesting — where the measure of success isn't whether something works, but whether it feels right.</p>
+      <p>I'm drawn to projects that sit at the intersection of human emotion and complex systems. Where getting the details right isn't a nice-to-have — it's the whole point. If you're looking for a designer who works at that level, I'd like to show you what that looks like in practice.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">Breuninger · AI Concierge · 2026</div>
-  <div class="footer-tag">Marcel Lauterbach</div>
-  <div class="footer-credit">Figma · VEO3 · Nano Banana · Adobe Premiere Pro</div>
+  <div class="footer-brand">Marcel Lauterbach</div>
+  <div class="footer-tag">UX/UI Designer · 2026</div>
+  <div class="footer-credit">Breuninger · AI Style Concierge · Proof of Concept</div>
 </footer>
 
 <script>
-  // Scroll-triggered fade-ins
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => {
       if (el.isIntersecting) {
@@ -1076,35 +715,6 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Video play
-  function playVideo() {
-    const video = document.getElementById('demoVideo');
-    const overlay = document.getElementById('videoOverlay');
-    video.style.display = 'block';
-    overlay.style.display = 'none';
-    video.play().catch(() => {
-      overlay.style.display = 'flex';
-      video.style.display = 'none';
-    });
-  }
-
-  // Bar animation
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll('.bar-fill');
-        fills.forEach(fill => {
-          const target = fill.style.width;
-          fill.style.width = '0%';
-          setTimeout(() => { fill.style.transition = 'width 1.2s ease'; fill.style.width = target; }, 100);
-        });
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  const impactSection = document.querySelector('.impact-section');
-  if (impactSection) barObserver.observe(impactSection);
 </script>
 </body>
 </html>
